@@ -1,8 +1,8 @@
-=== bytestring ===
+=== bytestring
 
 An attempt to specify a low-level byte representation in Ruby, agnostic
 of encodings and with additional bitwise operations.
 
-Please fork, improve and join the discussion at [1] if you like the idea!
+Please fork, improve and join the discussion(*) if you like the idea!
 
-[1] https://bugs.ruby-lang.org/issues/6361
+(*) https://bugs.ruby-lang.org/issues/6361
