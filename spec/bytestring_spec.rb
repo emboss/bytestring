@@ -7,7 +7,6 @@ describe ByteString do
   let(:utf8) { [%w{ C3 A4 }.join('')].pack('H*').force_encoding(Encoding::UTF_8) }
 
   describe "#new" do
-
     it "accepts no arguments" do
       -> { ByteString.new }.should_not raise_error
     end
@@ -296,7 +295,7 @@ describe ByteString::Immutable do
   describe "does not allow any modifications that would alter its contents" do
     let(:string) { new_immutable(test) }
     
-    context "#[]" do
+    context "#[]=" do
       it { -> { string[0] = 42 }.should raise_error }
     end
   end
