@@ -2,10 +2,6 @@ class ByteString
   module BasicByteString
     include Enumerable
 
-    def clone
-      ByteString.new(@inner)
-    end
-
     def [](index)
       slice(index)
     end
