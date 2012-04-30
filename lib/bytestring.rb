@@ -124,9 +124,5 @@ class ByteString
     def erase
       @inner.replace("\x00" * size)
     end
-
-    def to_s
-      super.to_s
-    end
   end
 end
