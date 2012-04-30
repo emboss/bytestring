@@ -50,14 +50,6 @@ class ByteString
       @inner.each_byte(&blk)
     end
 
-    def to_s
-      String.new(@inner)
-    end
-
-    def to_hex
-      @inner.unpack("H*")[0]
-    end
-
     def ==(other)
       return false unless size == other.size
       each.each_with_index do |b, i|
@@ -118,6 +110,14 @@ class ByteString
   end
   alias :<< :concat
 
+  def to_s
+    String.new(@inner)
+  end
+
+  def to_hex
+    @inner.unpack("H*")[0]
+  end
+
   class Immutable
     include BasicByteString
 
@@ -127,6 +127,10 @@ class ByteString
 
     def erase
       @inner.replace("\x00" * size)
+    end
+
+    def to_s
+      super.to_s
     end
   end
 end

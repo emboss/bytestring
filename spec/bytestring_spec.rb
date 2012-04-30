@@ -287,16 +287,25 @@ describe ByteString::Immutable do
   describe "#erase" do
     it "clears the contents of the ByteString and overwrites them with 0s in memory" do
       s = new_immutable(test)
-      s.to_s.should == test
+      s.should == ByteString.new(test)
       s.erase
-      s.to_s.should == "\x00\x00\x00\x00\x00\x00"
+      s.should == ByteString.new("\x00\x00\x00\x00\x00\x00")
     end
   end
 
   describe "does not allow any modifications that would alter its contents" do
     let(:string) { new_immutable(test) }
-    context "[]" do
+    
+    context "#[]" do
       it { -> { string[0] = 42 }.should raise_error }
+    end
+  end
+
+  describe "does not leak anything about its contents" do
+    let(:string) { new_immutable(test) }
+    
+    context "#to_s" do
+      it { string.to_s.should_not == "letest" }
     end
   end
 end
