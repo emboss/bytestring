@@ -248,7 +248,7 @@ describe ByteString do
       end
 
       context "when created from a String with an associated encoding" do
-        it do
+        it "is agnostic of String encodings and works on the raw bytes" do
           s = ByteString.new(utf8).to_s
           s.encoding.should == Encoding::BINARY
           s.should == "\xc3\xa4"
