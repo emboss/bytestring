@@ -106,8 +106,9 @@ class ByteString
   end
   alias :<< :concat
 
-  def to_s
-    String.new(@inner)
+  def to_s(encoding=nil)
+    s = String.new(@inner)
+    encoding ? s.force_encoding(encoding) : s
   end
 
   def to_hex

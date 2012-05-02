@@ -241,17 +241,22 @@ describe ByteString do
   end
 
   describe "#to_s" do
-    context "returns a String with Encoding::BINARY" do
+    context "returns a String with Encoding::BINARY when given no arguments" do
       context "when created from a default String" do
         it { string.to_s.encoding.should == Encoding::BINARY }
       end
 
       context "when created from a String with an associated encoding" do
-        it "is agnostic of String encodings and works on the raw bytes" do
+        it "is agnostic of String encodings and works on the raw bytes when given no arguments" do
           s = ByteString.new(utf8).to_s
           s.encoding.should == Encoding::BINARY
           s.should == "\xc3\xa4"
         end
+      end
+
+      context "when given an encoding, it associates it with the string returned" do
+        it { string.to_s(Encoding::UTF_8).encoding.should == Encoding::UTF_8 }
+        it { ByteString.new(utf8).to_s(Encoding::UTF_8).encoding.should == Encoding::UTF_8 }
       end
     end
   end
